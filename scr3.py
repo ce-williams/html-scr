@@ -18,24 +18,31 @@ soup = BeautifulSoup(r.text, 'lxml')
 # for item in data:
 #     print(data)
 
+# data = []
+# title = soup.find_all('a', class_="price", limit=10)
+#     for children in title
 
-title = soup.find_all('tr', limit=10)
-print(title)
+
+# data.append(title)
+# print(data)
 
 
 # ////////////////////////////////////
 # ///////////ALL CURRENCIES///////////
 # ////////////////////////////////////
-# data = []
-# table = soup.find('table', id='currencies-all')
-# 
-# for row in table.find_all('tr'):
-#     try:
-#         symbol = row.find('td', 'text-left col-symbol').text
-#         price = row.find('a', class_='price').text
-#         time_1h = row.find('td', {'data-timespan': '1h'}).text
-#     except AttributeError:
-#         continue
-#     data.append((symbol, price, time_1h))
+data = []
+table = soup.find('table', id='currencies-all')
+
+for row in table.find_all('tr', limit=10):
+    try:
+        symbol = row.find('td', 'text-left col-symbol').text
+        price = row.find('a', class_='price').text
+        time_1h = row.find('td', {'data-timespan': '1h'}).text
+    except AttributeError:
+        continue
+    data.append((symbol, price, time_1h))
 # for item in data:
 #     print(data)
+
+
+print(data)
